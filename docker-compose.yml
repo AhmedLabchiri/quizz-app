@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: quizz-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=0
+      - DJANGO_SETTINGS_MODULE=quizz_project.settings
+    volumes:
+      - ./backend:/app
+      - static_volume:/app/staticfiles
+    networks:
+      - quizz-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: quizz-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - quizz-network
+
+networks:
+  quizz-network:
+    driver: bridge
+
+volumes:
+  static_volume: 
