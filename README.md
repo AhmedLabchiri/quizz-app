@@ -1,93 +1,103 @@
-# Quiz Generation Application
+# Quiz Application
 
-An AI-powered quiz application built with Django, React, and Firebase. This application lets users generate quizzes on any subject using AI, take quizzes, and track their progress over time.
+A full-stack quiz application built with Django, React, and OpenAI integration.
+
+## Project Structure
+
+```
+quizz_app/
+├── backend/           # Django backend
+│   ├── quizzes/      # Main Django app
+│   └── quizz_project/ # Django project settings
+├── frontend/         # React frontend
+└── .github/         # GitHub Actions workflows
+```
 
 ## Features
 
-- User authentication with Firebase
-- AI-generated quizzes on any subject
-- Quiz difficulty selection (easy, medium, hard)
-- Quiz submission and automatic grading
-- History of past quizzes
-- Score tracking and statistics
+- Quiz generation using OpenAI API
+- User authentication
+- Quiz taking and scoring
+- Real-time feedback
+- Responsive design
 
-## Technology Stack
+## Setup
 
-- **Backend**: Django, Django REST Framework
-- **Frontend**: React, Bootstrap
-- **Authentication**: Firebase Authentication
-- **AI Integration**: OpenAI API
-
-## Setup Instructions
-
-### Backend Setup
+### Backend
 
 1. Navigate to the backend directory:
-   ```
-   cd quizz_app/backend
-   ```
+```bash
+cd backend
+```
 
-2. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+2. Create and activate virtual environment:
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
 
-3. Apply migrations:
-   ```
-   python manage.py migrate
-   ```
+3. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
 
-4. Create an admin user:
-   ```
-   python manage.py createsuperuser
-   ```
+4. Set up environment variables:
+Create a `apis.env` file with:
+```
+OPENAI_API_KEY=your_api_key_here
+```
 
-5. Run the development server:
-   ```
-   python manage.py runserver
-   ```
+5. Run migrations:
+```bash
+python manage.py migrate
+```
 
-### Frontend Setup
+6. Start the server:
+```bash
+python manage.py runserver
+```
+
+### Frontend
 
 1. Navigate to the frontend directory:
-   ```
-   cd quizz_app/frontend
-   ```
+```bash
+cd frontend
+```
 
 2. Install dependencies:
-   ```
-   npm install
-   ```
-
-3. Run the development server:
-   ```
-   npm start
-   ```
-
-## Usage
-
-1. Register a new account or log in
-2. From the dashboard, click "Create New Quiz"
-3. Enter a subject and select a difficulty level
-4. Answer the 10 generated questions
-5. Submit the quiz to see your score and correct answers
-6. View your quiz history to track progress
-
-## API Endpoints
-
-- `/api/register/` - User registration
-- `/api-token-auth/` - User authentication
-- `/api/quizzes/` - List all quizzes
-- `/api/generate/` - Generate a new quiz
-- `/api/submit/<quiz_id>/` - Submit quiz answers
-- `/api/history/` - View quiz history
-
-## Environment Variables
-
-Create a `.env` file in the backend directory with the following variables:
-
+```bash
+npm install
 ```
-OPENAI_API_KEY=your_openai_api_key
-SECRET_KEY=your_django_secret_key
-DEBUG=True
-``` 
+
+3. Start the development server:
+```bash
+npm start
+```
+
+## Docker Deployment
+
+The application can be deployed using Docker:
+
+```bash
+# Build and start containers
+docker-compose up --build
+```
+
+## CI/CD
+
+The project uses GitHub Actions for continuous integration and deployment:
+
+- Backend CI/CD: Tests, builds, and deploys the Django application
+- Frontend CI/CD: Tests, builds, and deploys the React application
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details. 
